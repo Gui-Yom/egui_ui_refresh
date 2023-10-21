@@ -1,7 +1,14 @@
 [package]
 name = "egui_ui_refresh"
 version = "0.1.0"
+authors = ["Guillaume Anthouard <guillaume.anthouard@hotmail.fr>"]
 edition = "2021"
+rust-version = "1.70"
+description = "Aims to beautify egui by replacing fonts and tweaking the default style"
+repository = "https://github.com/Gui-Yom/egui_ui_refresh"
+license = "MIT"
+keywords = ["egui", "ui", "fonts", "style"]
+categories = ["gui"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -10,6 +10,8 @@ New fonts :
 > Using `egui_ui_refresh` will remove all icons.
 > Use something like `egui_phosphor` to add icons back.
 
+This project is very much in development. Not much has changed from the base style.
+
 ## Usage
 
 ```rust
