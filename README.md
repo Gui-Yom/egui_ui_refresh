@@ -1,20 +1,25 @@
 # egui_ui_refresh
 
-Changes the default egui fonts, provides new text primitives and tweaks the general style.
+An attempt at improving the egui look and feel. This crate is mainly code pulled from `re_ui`,
+the [Rerun](https://rerun.io) UI crate.
 
-New fonts :
-- Inter
-- Jetbrains Mono
+This project is very much in development, do not expect anything to work correctly.
 
-> [!IMPORTANT]
-> Using `egui_ui_refresh` will remove all icons.
-> Use something like `egui_phosphor` to add icons back.
+## Fonts
 
-This project is very much in development. Not much has changed from the base style.
+This crates packages some fonts :
+
+- Inter for the proportional style
+- Jetbrains Mono for the monospace style
+- Phosphor icons
+- Noto emoji monochrome
+
+You can turn off egui / eframe `default_fonts` crate feature to reduce binary size.
 
 ## Usage
 
 ```rust
-egui_ctx.set_fonts(egui_ui_refresh::fonts());
-egui_ctx.set_style(egui_ui_refresh::style());
+// In the AppCreator closure from eframe
+cc.egui_ctx.set_fonts(egui_ui_refresh::fonts::fonts());
+RefreshedTheme::init_default().apply( & cc.egui_ctx);
 ```

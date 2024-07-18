@@ -1,6 +1,8 @@
 use eframe::{App, Frame, NativeOptions};
-use egui::text::LayoutJob;
 use egui::{CentralPanel, ComboBox, Context, FontFamily, FontId, Slider, TextFormat};
+use egui::text::LayoutJob;
+
+use egui_ui_refresh::RefreshedTheme;
 
 fn main() {
     eframe::run_native(
@@ -10,16 +12,16 @@ fn main() {
         },
         Box::new(|cc| {
             cc.egui_ctx.set_fonts(egui_ui_refresh::fonts());
-            cc.egui_ctx.set_style(egui_ui_refresh::style());
+            RefreshedTheme::init_default().apply(&cc.egui_ctx);
 
-            Box::new(ExampleApp {
+            Ok(Box::new(ExampleApp {
                 font_family: FontFamily::Proportional,
                 font_size: 30.0,
                 extra_spacing: false,
-            })
+            }))
         }),
     )
-    .unwrap();
+        .unwrap();
 }
 
 struct ExampleApp {
@@ -29,9 +31,9 @@ struct ExampleApp {
 }
 
 impl App for ExampleApp {
-    fn update(&mut self, ctx: &Context, frame: &mut Frame) {
+    fn update(&mut self, ctx: &Context, _frame: &mut Frame) {
         CentralPanel::default().show(ctx, |ui| {
-            ui.add(Slider::new(&mut self.font_size, 6.0..=80.0));
+            ui.add(Slider::new(&mut self.font_size, 6.0..=80.0).max_decimals(0));
             ComboBox::new("font-family", "Font family")
                 .selected_text(format!("{}", self.font_family))
                 .show_ui(ui, |ui| {
@@ -69,7 +71,9 @@ impl App for ExampleApp {
                     valign: Default::default(),
                 },
             );
-            ui.label(job);
+            ui.label(job).on_hover_ui(|ui| {
+                ui.link("Hey !");
+            });
         });
     }
 }

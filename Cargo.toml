@@ -1,10 +1,10 @@
 [package]
 name = "egui_ui_refresh"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Guillaume Anthouard <guillaume.anthouard@hotmail.fr>"]
 edition = "2021"
-rust-version = "1.70"
-description = "Aims to beautify egui by replacing fonts and tweaking the default style"
+rust-version = "1.76"
+description = "An attempt at refreshing the egui style so it does not look that ugly by default"
 repository = "https://github.com/Gui-Yom/egui_ui_refresh"
 license = "MIT"
 keywords = ["egui", "ui", "fonts", "style"]
@@ -13,7 +13,13 @@ categories = ["gui"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-egui = { version = "0.23", default-features = false }
+egui = { version = "0.28", default-features = false, features = ["color-hex"] }
+re_format = "0.17"
 
 [dev-dependencies]
-eframe = { version = "0.23", default-features = false, features = ["glow"] }
+eframe = { version = "0.28", default-features = false, features = ["glow"] }
+
+[features]
+default = ["toasts", "modal"]
+toasts = []
+modal = []
